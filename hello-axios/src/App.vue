@@ -1,23 +1,17 @@
 <template>
-<div>
-  {{info}}
-</div>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  data () {
-    return {
-      info: null
-    }
-  },
- mounted () {
-    axios
-      .get('https://localhost:44374/api/vrc/GetValve3Details/3')
-      .then(response => (this.info = response))
+  components: {
+    HelloWorld
   }
 }
 </script>
