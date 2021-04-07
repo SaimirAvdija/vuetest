@@ -1,6 +1,8 @@
 <template>
 <div>
-  {{info}}
+  {{valveInfo}}
+  {{pumpInfo}}
+  {{tankInfo}}
 </div>
 </template>
 
@@ -11,13 +13,18 @@ export default {
   name: 'App',
   data () {
     return {
-      info: null
+      valveInfo: null,
+      pumpInfo: null,
+      tankInfo: null
     }
   },
  mounted () {
-    axios
-      .get('https://localhost:44374/api/vrc/GetValve3Details/3')
-      .then(response => (this.info = response))
+    axios.get('https://localhost:44374/api/vrc/GetAllValves')
+      .then(response => (this.valveInfo = response.data));
+    axios.get('https://localhost:44374/api/vrc/GetAllPumps')
+      .then(response => (this.pumpInfo = response.data));
+    axios.get('https://localhost:44374/api/vrc/GetAllTanks')
+      .then(response => (this.tankInfo = response.data));
   }
 }
 </script>
